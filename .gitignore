@@ -1,0 +1,67 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers de configuration d'éditeur
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Fichiers et dossiers de configuration de projet
+.env
+.env.local
+docker-compose.override.yml
+
+# Dossiers de dépendances
+node_modules/
+venv/
+.env/
+
+# Dossiers spécifiques à des outils de build ou à des fichiers temporaires
+dist/
+tmp/
+out/
+build/
+
+# Fichiers de logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichier de base de données local
+*.sqlite
+*.sqlite3
+
+# Fichiers de cache
+.cache
+.parcel-cache
+
+# Fichiers de package lock autres que package-lock.json et yarn.lock
+pnpm-lock.yaml
+
+# Dossiers spécifiques aux sous-projets (à décommenter si nécessaire)
+#/appMedicBack/node_modules/
+#/appMedicFront/node_modules/
+
+# Autres fichiers/dossiers spécifiques aux sous-projets
+/appMedicBack/.venv
+/appMedicFront/dist/
+
+# Fichiers spécifiques à Docker
+docker-compose.override.yml
+*.env
+
+# Ignore les fichiers de configuration spécifiques qui pourraient être ajoutés manuellement
+custom-config.json
+
+# Ignore les fichiers de sauvegarde
+*.bak
+*.tmp
+
+# Ignore les fichiers de compilation Python dans tous les sous-dossiers
+**/__pycache__/
+**/*.py[cod]
+
+# Ignore les fichiers de sauvegarde créés par l'éditeur de texte Sublime Text dans tous les sous-dossiers
+**/*.sublime-workspace
