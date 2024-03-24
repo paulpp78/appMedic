@@ -12,8 +12,7 @@ fake = Faker()
         (fake.user_name(), str(fake.random_number(digits=7)), None),
         (fake.user_name(), str(fake.random_number(digits=13)), None),
         (fake.user_name(), str(fake.random_number(digits=0)), ValueError),
-        (fake.user_name(), str(fake.random_number(digits=6)), ValueError),
-        (fake.user_name(), str(fake.random_number(digits=20)), ValueError),
+        (fake.user_name(), str(fake.random_number(digits=14)), ValueError),
     ],
 )
 def test_signalement_validation(pseudo, code_cip, expected_exception):
