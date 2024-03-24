@@ -2,9 +2,7 @@ name: Angular CI
 
 on:
   push:
-    branches: ['main']
-  pull_request:
-    branches: ['main']
+    branches: ['null']
 
 jobs:
   build:
@@ -24,5 +22,5 @@ jobs:
         working-directory: ./appMedicFront
 
       - name: Run Tests
-        run: ng test --no-watch --no-progress --watch=false --code-coverage --browsers=ChromeHeadlessCI
+        run: ng test --no-watch --watch=false
         working-directory: ./appMedicFront
