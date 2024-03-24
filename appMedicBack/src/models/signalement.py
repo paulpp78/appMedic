@@ -9,7 +9,7 @@ class Signalement:
             not (len(self.code_cip) == 7 or len(self.code_cip) == 13)
             or not self.code_cip.isdigit()
         ):
-            error = f"Le code CIP doit être un nombre à 7 ou 13 chiffres."
+            error = "Le code CIP doit être un nombre à 7 ou 13 chiffres."
             raise ValueError(error)
 
     def to_dict(self):
