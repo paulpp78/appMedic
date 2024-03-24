@@ -5,11 +5,12 @@ class Signalement:
         self._validate_cip()
 
     def _validate_cip(self):
-        if not (len(self.code_cip) == 7 or len(self.code_cip) == 13) or not self.code_cip.isdigit():
-            raise ValueError("Le code CIP doit être un nombre à 7 ou 13 chiffres.")
+        if (
+            not (len(self.code_cip) == 7 or len(self.code_cip) == 13)
+            or not self.code_cip.isdigit()
+        ):
+            error = f"Le code CIP doit être un nombre à 7 ou 13 chiffres."
+            raise ValueError(error)
 
     def to_dict(self):
-        return {
-            "pseudo": self.pseudo,
-            "code_cip": self.code_cip
-        }
+        return {"pseudo": self.pseudo, "code_cip": self.code_cip}

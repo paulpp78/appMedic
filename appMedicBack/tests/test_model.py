@@ -4,14 +4,18 @@ from src.models.signalement import Signalement
 
 fake = Faker()
 
-@pytest.mark.parametrize("pseudo, code_cip, expected_exception", [
-    (fake.user_name(), str(fake.random_number(digits=3)), ValueError),
-    (fake.user_name(), str(fake.random_number(digits=7)), None),
-    (fake.user_name(), str(fake.random_number(digits=13)), None),
-    (fake.user_name(), str(fake.random_number(digits=0)), ValueError),
-    (fake.user_name(), str(fake.random_number(digits=6)), ValueError),
-    (fake.user_name(), str(fake.random_number(digits=20)), ValueError),
-])
+
+@pytest.mark.parametrize(
+    "pseudo, code_cip, expected_exception",
+    [
+        (fake.user_name(), str(fake.random_number(digits=3)), ValueError),
+        (fake.user_name(), str(fake.random_number(digits=7)), None),
+        (fake.user_name(), str(fake.random_number(digits=13)), None),
+        (fake.user_name(), str(fake.random_number(digits=0)), ValueError),
+        (fake.user_name(), str(fake.random_number(digits=6)), ValueError),
+        (fake.user_name(), str(fake.random_number(digits=20)), ValueError),
+    ],
+)
 def test_signalement_validation(pseudo, code_cip, expected_exception):
     if expected_exception:
         with pytest.raises(expected_exception):

@@ -1,5 +1,6 @@
 from models.signalement import Signalement
 
+
 class SignalementService:
     def __init__(self, repository):
         self.repository = repository
