@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Set up Node.js
+      - name: Use Node.js 18.17.1
         uses: actions/setup-node@v3
         with:
-          node-version: '18.17'
+          node-version: 18.17.1
           cache: 'npm'
+          cache-dependency-path: appMedicFront/package-lock.json
 
       - name: Install Dependencies
         run: npm install
