@@ -1,8 +1,8 @@
-from flask import request, jsonify
-from service.SignalementService import SignalementService
+from Repository.SignalementRepository import SignalementRepository
 from bson import ObjectId, errors as bson_errors
 from db.mongodb import get_mongo_client
-from Repository.SignalementRepository import SignalementRepository
+from flask import request, jsonify
+from service.SignalementService import SignalementService
 
 
 class SignalementRoutes:
