@@ -33,3 +33,10 @@ class SignalementRoutes:
                 return jsonify({"error": str(ve)}), 400
             except bson_errors.InvalidId:
                 return jsonify({"error": "ID de signalement invalide"}), 400
+    
+        def delete_signalement(signalement_id):
+            try:
+                service.delete_signalement(ObjectId(signalement_id))
+                return jsonify({"message": "Signalement supprimé avec succès"}), 200
+            except bson_errors.InvalidId:
+                return jsonify({"error": "ID de signalement invalide"}), 400

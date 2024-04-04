@@ -20,7 +20,7 @@ Avant de commencer, assurez-vous que vous avez installé les éléments suivants
 Nous avons un script de configuration pour Windows qui installe toutes les dépendances nécessaires pour le backend et le frontend. Exécutez le script `setup.ps1` en ouvrant PowerShell comme administrateur.
 
 ```powershell
-.\setup.ps1
+.\"setup.ps1"
 ```
 
 ## Démarrage de l'application

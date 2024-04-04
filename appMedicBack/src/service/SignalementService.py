@@ -12,3 +12,9 @@ class SignalementService:
         if modified == 0:
             raise ValueError("Aucun signalement n'a été modifié.")
         return modified
+    
+    def delete_signalement(self, signalement_id):
+        deleted_count = self.repository.delete(signalement_id)
+        if deleted_count == 0:
+            raise ValueError("Aucun signalement n'a été supprimé.")
+        return deleted_count

@@ -7,3 +7,7 @@ class SignalementRepository:
             {"_id": signalement_id}, {"$set": update_data}
         )
         return result.modified_count
+
+    def delete(self, signalement_id):
+        result = self.db.signalements.delete_one({"_id": signalement_id})
+        return result.deleted_count
