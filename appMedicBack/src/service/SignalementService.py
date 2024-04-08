@@ -16,7 +16,7 @@ class SignalementService:
     def created_signalement(self, signalement_id, pseudo, code_cip):
         signalement = Signalement(pseudo, code_cip)
         created_data = signalement.to_dict()
-        modified = self.repository.update(signalement_id, created_data)
-        if modified == 0:
-            raise ValueError("Aucun signalement n'a été modifié.")
-        return modified
+        created = self.repository.update(signalement_id, created_data)
+        if created == 0:
+            raise ValueError("Aucun signalement n'a été créé.")
+        return created

@@ -33,3 +33,27 @@ class SignalementRoutes:
                 return jsonify({"error": str(ve)}), 400
             except bson_errors.InvalidId:
                 return jsonify({"error": "ID de signalement invalide"}), 400
+            
+        @app.route("/signalement", methods=["POST"])
+        def created_signalement(signalement_id):
+            data = request.json
+            pseudo, code_cip = data.get("pseudo"), data.get("code_cip")
+            if not pseudo or not code_cip:
+                return jsonify({"error": "Pseudo et CIP sont requis"}), 400
+            try:
+                modified_count = service.update_signalement(
+                    ObjectId(signalement_id), pseudo, code_cip
+                )
+                return (
+                    jsonify(
+                        {
+                            "message": "Signalement mis à jour",
+                            "created_count": created_count,
+                        }
+                    ),
+                    200,
+                )
+            except ValueError as ve:
+                return jsonify({"error": str(ve)}), 400
+            except bson_errors.InvalidId:
+                return jsonify({"error": "ID de signalement invalide"}), 400
