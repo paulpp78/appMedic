@@ -1,0 +1,2 @@
+MONGO_URI=mongodb+srv://admin:password@appmedic.dygkvlv.mongodb.net/?retryWrites=true&w=majority&appName=appMedic
+APP_PORT=3000
