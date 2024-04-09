@@ -26,3 +26,15 @@ class SignalementService:
         if deleted_count == 0:
             raise ValueError("Aucun signalement n'a été supprimé.")
         return deleted_count
+
+    def get_signalement(self, signalement_id):
+        readed = self.repository.read(signalement_id)
+        if readed is None:
+            raise ValueError("Aucun signalement n'as été trouvé.")
+        return readed
+
+    def get_signalements(self):
+        readed = self.repository.read_all()
+        if readed is None:
+            raise ValueError("Aucun signalement n'as été trouvé.")
+        return readed

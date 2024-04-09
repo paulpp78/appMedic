@@ -8,7 +8,7 @@ app = Flask(__name__)
 initialized = False
 
 
-@app.before_request
+# @app.before_request
 def initialize_database():
     global initialized
     if not initialized:
@@ -23,4 +23,5 @@ def initialize_database():
 
 SignalementRoutes.init_app(app)
 if __name__ == "__main__":
+    initialize_database()
     app.run(debug=True, port=Config.APP_PORT)
