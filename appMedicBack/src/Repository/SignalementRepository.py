@@ -15,4 +15,7 @@ class SignalementRepository:
     def delete(self, signalement_id):
         result = self.db.signalements.delete_one({"_id": signalement_id})
         return result.deleted_count
-print("hello")
+    
+    def read(self, signalement_id):
+        result = self.db.signalements.find_one({"_id": signalement_id})
+        return result.readed_count
