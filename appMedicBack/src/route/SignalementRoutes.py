@@ -67,8 +67,17 @@ class SignalementRoutes:
             try:
                 signalement = service.get_signalement(ObjectId(signalement_id))
                 if signalement:
+                    signalement["_id"] = str(signalement["_id"])
                     return jsonify(signalement), 200
                 else:
                     return jsonify({"error": "Signalement non trouvé"}), 404
             except bson_errors.InvalidId:
                 return jsonify({"error": "ID de signalement invalide"}), 400
+
+        @app.route("/signalement", methods=["GET"])
+        def get_signalements():
+            signalements = service.get_signalements()
+            signalements_list = list(signalements)
+            for signalement in signalements_list:
+                signalement["_id"] = str(signalement["_id"])
+            return jsonify(signalements_list), 200
