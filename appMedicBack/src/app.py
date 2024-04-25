@@ -3,9 +3,19 @@ from flask import Flask
 from config import Config
 from db.mongodb import get_mongo_client
 from route.SignalementRoutes import SignalementRoutes
+from flask_cors import CORS
 
 app = Flask(__name__)
 initialized = False
+
+CORS(
+    app,
+    origins=[
+        Config.CORS_ORIGIN,
+        Config.CORS_ORIGIN_FRONT,
+        Config.CORS_ORIGIN_PROD,
+    ],
+)
 
 
 # @app.before_request
