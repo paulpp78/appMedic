@@ -20,5 +20,5 @@ class Signalement:
         return {
             "pseudo": self.pseudo,
             "code_cip": self.code_cip,
-            "date_created": self.date_created.isoformat(),
+            "date_created": self.date_created,
         }

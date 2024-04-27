@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg bg-primary">
+  <div class="container-fluid">
+    <!-- Bouton pour ouvrir la sidebar, avec un ajustement pour les grands écrans -->
+    <p-button
+      (click)="sidebarVisible = true"
+      class="p-button-rounded p-button-info mr-2"
+      icon="pi pi-bars"
+    ></p-button>
+  </div>
+</nav>
+
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  [modal]="true"
+  class="bg-dark text-white"
+>
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link text-warning" routerLink="/">
+        <i class="pi pi-home mr-2"></i>Accueil
+      </a>
+    </li>
+  </ul>
+</p-sidebar>
