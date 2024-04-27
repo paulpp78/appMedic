@@ -1,0 +1,22 @@
+#CodeCIP {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s; 
+    display: flex;
+  }
+  
+  #CodeCIP:focus,
+  #CodeCIP:hover {
+    outline: none;
+    border-color: dodgerblue; 
+  }
+  
+  #CodeCIP::placeholder {
+    color: #999;
+  }
+  
