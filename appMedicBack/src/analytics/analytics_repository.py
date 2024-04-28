@@ -25,12 +25,7 @@ class AnalyticsRepository:
         start_of_week = today - timedelta(days=today.weekday())
         end_of_week = start_of_week + timedelta(days=7)
         pipeline = [
-            {"$match": {
-                "date_created": {
-                "$gte": start_of_week, 
-                "$lt": end_of_week
-                }
-            }},
+            {"$match": {"date_created": {"$gte": start_of_week, "$lt": end_of_week}}},
             {
                 "$group": {
                     "_id": {
@@ -51,12 +46,7 @@ class AnalyticsRepository:
         next_month = start_of_month + timedelta(days=31)
         end_of_month = datetime(next_month.year, next_month.month, 1)
         pipeline = [
-            {"$match": {
-                "date_created": {
-                    "$gte": start_of_month, 
-                    "$lt": end_of_month
-                    }
-            }},
+            {"$match": {"date_created": {"$gte": start_of_month, "$lt": end_of_month}}},
             {
                 "$group": {
                     "_id": {
@@ -76,12 +66,7 @@ class AnalyticsRepository:
         start_of_year = datetime(today.year, 1, 1)
         end_of_year = datetime(today.year + 1, 1, 1)
         pipeline = [
-            {"$match": {
-                "date_created": {
-                "$gte": start_of_year, 
-                "$lt": end_of_year
-                }
-            }},
+            {"$match": {"date_created": {"$gte": start_of_year, "$lt": end_of_year}}},
             {
                 "$group": {
                     "_id": {

@@ -1,6 +1,6 @@
 export interface Signalement {
   id?: number;
   pseudo: string;
-  code_CIP: string;
-  date?: Date;
+  code_cip: string;
+  date_created?: Date;
 }

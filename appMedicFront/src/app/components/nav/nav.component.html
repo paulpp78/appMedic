@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-primary">
   <div class="container-fluid">
-    <!-- Bouton pour ouvrir la sidebar, avec un ajustement pour les grands écrans -->
     <p-button
-      (click)="sidebarVisible = true"
+      (click)="sidebarVisible = !sidebarVisible"
       class="p-button-rounded p-button-info mr-2"
       icon="pi pi-bars"
     ></p-button>
@@ -16,8 +15,13 @@
 >
   <ul class="nav flex-column">
     <li class="nav-item">
-      <a class="nav-link text-warning" routerLink="/">
-        <i class="pi pi-home mr-2"></i>Accueil
+      <a class="nav-link text-warning" routerLink="/signalement">
+        <i class="pi pi-list mr-2"></i>Signalements
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-warning" routerLink="/analytics">
+        <i class="pi pi-chart-bar mr-2"></i>Analytics
       </a>
     </li>
   </ul>
