@@ -18,6 +18,8 @@ export class SignalementService {
     );
   }
   
+
+  //Delete
   deleteSignalement(signalementId: string): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/signalement/${signalementId}`);
   }
