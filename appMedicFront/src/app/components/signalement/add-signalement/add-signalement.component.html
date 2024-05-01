@@ -1,8 +1,26 @@
 <div class="card flex justify-content-center">
-  <form (ngSubmit)="onSubmit()" [formGroup]="signalementForm" class="flex flex-column align-items-center">
-    <input type="text" pInputText formControlName="pseudo" placeholder="Rentrez votre pseudo">
-    <input type="text" pInputText formControlName="code_cip" placeholder="Rentrez le code CIP">
-    <button [disabled]="signalementForm.invalid" class="btn btn-primary" type="submit">
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="signalementForm"
+    class="flex flex-column align-items-center"
+  >
+    <input
+      type="text"
+      pInputText
+      formControlName="pseudo"
+      placeholder="Rentrez votre pseudo"
+    />
+    <input
+      type="text"
+      pInputText
+      formControlName="code_cip"
+      placeholder="Rentrez le code CIP"
+    />
+    <button
+      [disabled]="signalementForm.invalid"
+      class="btn btn-primary"
+      type="submit"
+    >
       <i class="pi pi-check"></i> Ajouter l'événement
     </button>
   </form>

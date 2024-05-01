@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AnalyticsByYearComponent } from './analytics-by-year.component';
+import { AnalyticsByYearComponent } from "./analytics-by-year.component";
 
-describe('AnalyticsByYearComponent', () => {
+describe("AnalyticsByYearComponent", () => {
   let component: AnalyticsByYearComponent;
   let fixture: ComponentFixture<AnalyticsByYearComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AnalyticsByYearComponent]
-    })
-    .compileComponents();
-    
+      declarations: [AnalyticsByYearComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(AnalyticsByYearComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
