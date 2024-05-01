@@ -1,8 +1,12 @@
+from datetime import datetime
+
+
 class Signalement:
     def __init__(self, pseudo: str, code_cip: str):
         self.pseudo = pseudo
         self.code_cip = code_cip
         self._validate_cip()
+        self.date_created = datetime.now()
 
     def _validate_cip(self):
         if (
@@ -13,4 +17,8 @@ class Signalement:
             raise ValueError(error)
 
     def to_dict(self):
-        return {"pseudo": self.pseudo, "code_cip": self.code_cip}
+        return {
+            "pseudo": self.pseudo,
+            "code_cip": self.code_cip,
+            "date_created": self.date_created,
+        }

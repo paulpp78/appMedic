@@ -9,18 +9,44 @@ import { Observable } from "rxjs";
 })
 export class SignalementService {
   constructor(private http: HttpClient) {}
-
-  //UPDATE
-  updateSignalement(signalement: Signalement): Observable<Object> {
-    return this.http.put(
-      environment.apiUrl + "/signalement/" + signalement.id,
+  //GET
+  getSignalements(): Observable<Signalement[]> {
+    return this.http.get<Signalement[]>(environment.apiUrl + "/signalement");
+  }
+  //GET
+  getSignalementById(id: number): Observable<Signalement> {
+    return this.http.get<Signalement>(
+      environment.apiUrl + "/signalement/" + id,
+    );
+  }
+  //POST
+  createSignalement(signalement: Signalement): Observable<Signalement> {
+    return this.http.post<Signalement>(
+      environment.apiUrl + "/signalement",
       signalement,
     );
   }
-  
 
-  //Delete
-  deleteSignalement(signalementId: string): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/signalement/${signalementId}`);
+
+    //Delete
+    deleteSignalement(signalementId: Signalement): Observable<any> {
+      return this.http.delete(`${environment.apiUrl}/signalement/${signalementId}`);
+    }
+
+  //UPDATE
+  updateSignalement(signalement: Signalement): Observable<Signalement> {
+    return this.http.put<Signalement>(
+      environment.apiUrl + "/signalement",
+      signalement,
+    );
   }
+  /*
+  //DELETE
+  deleteSignalement(id: number): Observable<Signalement> {
+    return this.http.delete<Signalement>(
+      environment.apiUrl + "/signalement/" + id,
+    );
+  }
+  */
+
 }

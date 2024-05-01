@@ -33,6 +33,57 @@ class SignalementRoutes:
                 return jsonify({"error": str(ve)}), 400
             except bson_errors.InvalidId:
                 return jsonify({"error": "ID de signalement invalide"}), 400
+
+        @app.route("/signalement", methods=["POST"])
+        def create_signalement():
+            data = request.json
+            pseudo, code_cip = data.get("pseudo"), data.get("code_cip")
+            if not pseudo or not code_cip:
+                return jsonify({"error": "Pseudo et CIP sont requis"}), 400
+            try:
+                created_count = service.create_signalement(pseudo, code_cip)
+                return (
+                    jsonify(
+                        {
+                            "message": "Signalement créé",
+                            "created_count": created_count,
+                        }
+                    ),
+                    200,
+                )
+            except ValueError as ve:
+                return jsonify({"error": str(ve)}), 400
+
+        @app.route("/signalement/<signalement_id>", methods=["DELETE"])
+        def delete_signalement(signalement_id):
+            try:
+                service.delete_signalement(ObjectId(signalement_id))
+                return jsonify({"message": "Signalement supprimé"}), 200
+            except bson_errors.InvalidId:
+                return jsonify({"error": "ID de signalement invalide"}), 400
+
+        @app.route("/signalement/<signalement_id>", methods=["GET"])
+        def get_signalement(signalement_id):
+            try:
+                signalement = service.get_signalement(ObjectId(signalement_id))
+                if signalement:
+                    signalement["_id"] = str(signalement["_id"])
+                    return jsonify(signalement), 200
+                else:
+                    return jsonify({"error": "Signalement non trouvé"}), 404
+            except bson_errors.InvalidId:
+                return jsonify({"error": "ID de signalement invalide"}), 400
+
+        @app.route("/signalement", methods=["GET"])
+        def get_signalements():
+            signalements = service.get_signalements()
+            signalements_list = list(signalements)
+            for signalement in signalements_list:
+                signalement["_id"] = str(signalement["_id"])
+            return jsonify(signalements_list), 200
+
+
+"""
     
         def delete_signalement(signalement_id):
             try:
@@ -40,3 +91,4 @@ class SignalementRoutes:
                 return jsonify({"message": "Signalement supprimé avec succès"}), 200
             except bson_errors.InvalidId:
                 return jsonify({"error": "ID de signalement invalide"}), 400
+"""

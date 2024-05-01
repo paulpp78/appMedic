@@ -12,9 +12,29 @@ class SignalementService:
         if modified == 0:
             raise ValueError("Aucun signalement n'a été modifié.")
         return modified
-    
+
+    def create_signalement(self, pseudo, code_cip):
+        signalement = Signalement(pseudo, code_cip)
+        created_data = signalement.to_dict()
+        created = self.repository.create(created_data)
+        if created == 0:
+            raise ValueError("Aucun signalement n'a été créé.")
+        return created
+
     def delete_signalement(self, signalement_id):
         deleted_count = self.repository.delete(signalement_id)
         if deleted_count == 0:
             raise ValueError("Aucun signalement n'a été supprimé.")
         return deleted_count
+
+    def get_signalement(self, signalement_id):
+        readed = self.repository.read(signalement_id)
+        if readed is None:
+            raise ValueError("Aucun signalement n'as été trouvé.")
+        return readed
+
+    def get_signalements(self):
+        readed = self.repository.read_all()
+        if readed is None:
+            raise ValueError("Aucun signalement n'as été trouvé.")
+        return readed
