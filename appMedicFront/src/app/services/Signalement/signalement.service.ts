@@ -40,12 +40,4 @@ export class SignalementService {
       signalement,
     );
   }
-
-  //CREATE
-  createSignalement(signalement: Signalement): Observable<Object> {
-    return this.http.post(
-      environment.apiUrl + "/signalement",
-      signalement,
-    )
-  }
 }
