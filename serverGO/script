@@ -1,0 +1,1 @@
+go build -o serverGO/server serverGO/server.go

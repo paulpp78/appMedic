@@ -29,3 +29,8 @@ Consultez les fichiers README spécifiques pour les instructions de démarrage d
 
 - [Backend README](./appMedicBack/README.md)
 - [Frontend README](./appMedicFront/README.md)
+
+# Démarrage des dockers
+
+docker build -t <nomImage> .
+docker run -p 8080:8080 <nomImage>
