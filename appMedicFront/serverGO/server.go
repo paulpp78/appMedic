@@ -7,15 +7,16 @@ import (
 )
 
 const PORT string = ":8080"
-const DIR = "./dist/app-medic-front/browser"
+const DIR = "./dist/app-medic-front/browser/index.html"
 
 func main() {
 	fmt.Printf("Server launched\n\n")
 	fmt.Printf("Veuillez vous rendre sur l'adresse : \"http://localhost:8080\"\n")
 
-	fs := http.FileServer(http.Dir(DIR))
-
-	http.Handle("/", fs)
+	// fs := http.FileServer(http.Dir(DIR))
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, DIR)
+	})
 
 	err := http.ListenAndServe(PORT, nil)
 
