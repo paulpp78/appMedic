@@ -21,6 +21,16 @@ import { AnalyticsByDayComponent } from './components/analytics/analytics-by-day
 import { AnalyticsByWeekComponent } from './components/analytics/analytics-by-week/analytics-by-week.component';
 import { AnalyticsByMonthComponent } from './components/analytics/analytics-by-month/analytics-by-month.component';
 import { AnalyticsByYearComponent } from './components/analytics/analytics-by-year/analytics-by-year.component';
+import { environment } from '../environments/environment';
+
+import { AuthModule } from '@auth0/auth0-angular';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -35,6 +45,8 @@ import { AnalyticsByYearComponent } from './components/analytics/analytics-by-ye
     AnalyticsByWeekComponent,
     AnalyticsByMonthComponent,
     AnalyticsByYearComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +60,7 @@ import { AnalyticsByYearComponent } from './components/analytics/analytics-by-ye
     ReactiveFormsModule,
     TableModule,
     BrowserAnimationsModule,
+    AuthModule.forRoot(environment.auth),
   ],
   providers: [],
   bootstrap: [AppComponent],
