@@ -10,4 +10,7 @@ class Config:
     CORS_ORIGIN = str(os.getenv("CORS_ORIGIN"))
     CORS_ORIGIN_FRONT = str(os.getenv("CORS_ORIGIN_FRONT"))
     CORS_ORIGIN_PROD = str(os.getenv("CORS_ORIGIN_PROD"))
+<<<<<<< HEAD
     HOST = str(os.getenv("HOST"))
+=======
+>>>>>>> af30212a66c0f1111080efec4748a6642ef7843f
