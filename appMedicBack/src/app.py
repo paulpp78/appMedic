@@ -36,4 +36,4 @@ AnalyticsRoutes.init_app(app)
 SignalementRoutes.init_app(app)
 if __name__ == "__main__":
     initialize_database()
-    app.run(debug=True, port=Config.APP_PORT)
+    app.run(host=Config.HOST, debug=True, port=Config.APP_PORT)
