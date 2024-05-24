@@ -21,6 +21,10 @@ import { AnalyticsByDayComponent } from './components/analytics/analytics-by-day
 import { AnalyticsByWeekComponent } from './components/analytics/analytics-by-week/analytics-by-week.component';
 import { AnalyticsByMonthComponent } from './components/analytics/analytics-by-month/analytics-by-month.component';
 import { AnalyticsByYearComponent } from './components/analytics/analytics-by-year/analytics-by-year.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment } from '../environments/environment';
+import { AuthButtonComponent } from './components/auth/auth-button/auth-button.component';
+import { UserProfileComponent } from './components/auth/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { AnalyticsByYearComponent } from './components/analytics/analytics-by-ye
     AnalyticsByWeekComponent,
     AnalyticsByMonthComponent,
     AnalyticsByYearComponent,
+    AuthButtonComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +54,23 @@ import { AnalyticsByYearComponent } from './components/analytics/analytics-by-ye
     ReactiveFormsModule,
     TableModule,
     BrowserAnimationsModule,
+    AuthModule.forRoot({
+      domain: environment.auth0Domain,
+      clientId: environment.auth0ClientId,
+
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+        audience: environment.auth0Audience,
+      },
+
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri: environment.apiUrlBackend,
+          },
+        ],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
