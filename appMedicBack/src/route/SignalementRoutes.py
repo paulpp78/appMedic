@@ -1,4 +1,5 @@
 from Repository.SignalementRepository import SignalementRepository
+from auth.auth import require_auth
 from bson import ObjectId, errors as bson_errors
 from db.mongodb import get_mongo_client
 from flask import request, jsonify
@@ -11,6 +12,7 @@ class SignalementRoutes:
         service = SignalementService(SignalementRepository(get_mongo_client()))
 
         @app.route("/signalement/<signalement_id>", methods=["PUT"])
+        @require_auth()
         def update_signalement(signalement_id):
             data = request.json
             pseudo, code_cip = data.get("pseudo"), data.get("code_cip")
@@ -35,6 +37,7 @@ class SignalementRoutes:
                 return jsonify({"error": "ID de signalement invalide"}), 400
 
         @app.route("/signalement", methods=["POST"])
+        @require_auth()
         def create_signalement():
             data = request.json
             pseudo, code_cip = data.get("pseudo"), data.get("code_cip")
@@ -55,6 +58,7 @@ class SignalementRoutes:
                 return jsonify({"error": str(ve)}), 400
 
         @app.route("/signalement/<signalement_id>", methods=["DELETE"])
+        @require_auth()
         def delete_signalement(signalement_id):
             try:
                 service.delete_signalement(ObjectId(signalement_id))
@@ -63,6 +67,7 @@ class SignalementRoutes:
                 return jsonify({"error": "ID de signalement invalide"}), 400
 
         @app.route("/signalement/<signalement_id>", methods=["GET"])
+        @require_auth()
         def get_signalement(signalement_id):
             try:
                 signalement = service.get_signalement(ObjectId(signalement_id))
@@ -75,6 +80,7 @@ class SignalementRoutes:
                 return jsonify({"error": "ID de signalement invalide"}), 400
 
         @app.route("/signalement", methods=["GET"])
+        @require_auth()
         def get_signalements():
             signalements = service.get_signalements()
             signalements_list = list(signalements)
