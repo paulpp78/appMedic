@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AnalyticsService } from '../../services/Analytics/analytics.service';
-import { Analyse } from '../../models/analyse';
 
 @Component({
   selector: 'app-analytics',

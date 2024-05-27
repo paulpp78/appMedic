@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { Analyse } from '../../models/analyse';
 import { AuthService } from '@auth0/auth0-angular';
-import { switchMap, map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,17 +16,6 @@ export class AnalyticsService {
     private http: HttpClient,
     private auth: AuthService,
   ) {}
-
-  private createHeaders(): Observable<HttpHeaders> {
-    return from(this.auth.getAccessTokenSilently()).pipe(
-      map((token) => {
-        return new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        });
-      }),
-    );
-  }
 
   getDailySignalements(): Observable<Analyse[]> {
     return this.createHeaders().pipe(
@@ -63,6 +52,17 @@ export class AnalyticsService {
       switchMap((headers) => {
         return this.http.get<Analyse[]>(`${this.apiUrl}/analytics/yearly`, {
           headers,
+        });
+      }),
+    );
+  }
+
+  private createHeaders(): Observable<HttpHeaders> {
+    return from(this.auth.getAccessTokenSilently()).pipe(
+      map((token) => {
+        return new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         });
       }),
     );

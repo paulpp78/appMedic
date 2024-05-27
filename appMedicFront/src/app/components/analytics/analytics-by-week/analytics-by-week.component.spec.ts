@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnalyticsByWeekComponent } from "./analytics-by-week.component";
+import { AnalyticsByWeekComponent } from './analytics-by-week.component';
 
-describe("AnalyticsByWeekComponent", () => {
+describe('AnalyticsByWeekComponent', () => {
   let component: AnalyticsByWeekComponent;
   let fixture: ComponentFixture<AnalyticsByWeekComponent>;
 
@@ -16,7 +16,7 @@ describe("AnalyticsByWeekComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

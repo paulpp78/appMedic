@@ -1,9 +1,9 @@
-import { TestBed } from "@angular/core/testing";
+import { TestBed } from '@angular/core/testing';
 
-import { SignalementService } from "./signalement.service";
-import { HttpClientModule } from "@angular/common/http";
+import { SignalementService } from './signalement.service';
+import { HttpClientModule } from '@angular/common/http';
 
-describe("SignalementService", () => {
+describe('SignalementService', () => {
   let service: SignalementService;
 
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe("SignalementService", () => {
     service = TestBed.inject(SignalementService);
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });

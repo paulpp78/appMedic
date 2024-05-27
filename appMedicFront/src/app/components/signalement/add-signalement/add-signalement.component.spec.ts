@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSignalementComponent } from "./add-signalement.component";
+import { AddSignalementComponent } from './add-signalement.component';
 
-describe("AddSignalementComponent", () => {
+describe('AddSignalementComponent', () => {
   let component: AddSignalementComponent;
   let fixture: ComponentFixture<AddSignalementComponent>;
 
@@ -16,7 +16,7 @@ describe("AddSignalementComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

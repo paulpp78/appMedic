@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-nav",
-  templateUrl: "./nav.component.html",
-  styleUrl: "./nav.component.css",
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrl: './nav.component.css',
 })
 export class NavComponent {
   sidebarVisible: boolean = false;

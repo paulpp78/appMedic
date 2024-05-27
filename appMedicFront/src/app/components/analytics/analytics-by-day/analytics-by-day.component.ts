@@ -12,6 +12,7 @@ export class AnalyticsByDayComponent implements OnInit {
   optionsByDay: any;
 
   constructor(private analyticsService: AnalyticsService) {}
+
   ngOnInit() {
     this.getDailyData();
   }

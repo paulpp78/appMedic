@@ -1,8 +1,10 @@
+import env from '../../env.json';
+
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000',
-  auth0Domain: 'appmedic-for-you.eu.auth0.com',
-  auth0ClientId: 'Rkm8I8JAXVBtgs2afBm2k0nmEq4dGsbg',
-  apiUrlBackend: '*',
-  auth0Audience: 'https://appMedic-api.fr',
+  apiUrl: env.apiUrl,
+  auth0Domain: env.auth0Domain,
+  auth0ClientId: env.auth0ClientId,
+  apiUrlBackend: env.apiUrlBackend,
+  auth0Audience: env.auth0Audience,
 };

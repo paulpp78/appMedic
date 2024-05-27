@@ -8,10 +8,9 @@ describe('AuthButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AuthButtonComponent]
-    })
-    .compileComponents();
-    
+      declarations: [AuthButtonComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(AuthButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

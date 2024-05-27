@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '@auth0/auth0-angular';
 import { environment } from '../../../environments/environment';
 import { Signalement } from '../../models/signalement';
-import { Observable, from } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +14,6 @@ export class SignalementService {
     private http: HttpClient,
     private auth: AuthService,
   ) {}
-
-  private createHeaders(): Observable<HttpHeaders> {
-    return from(this.auth.getAccessTokenSilently()).pipe(
-      map((token) => {
-        return new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        });
-      }),
-    );
-  }
 
   // GET
   getSignalements(): Observable<Signalement[]> {
@@ -84,6 +73,17 @@ export class SignalementService {
           signalement,
           { headers },
         );
+      }),
+    );
+  }
+
+  private createHeaders(): Observable<HttpHeaders> {
+    return from(this.auth.getAccessTokenSilently()).pipe(
+      map((token) => {
+        return new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        });
       }),
     );
   }

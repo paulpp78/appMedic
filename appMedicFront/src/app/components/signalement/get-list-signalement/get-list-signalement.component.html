@@ -1,16 +1,18 @@
 <div class="card">
-  <p-table [value]="signalements" [tableStyle]="{ 'min-width': '60rem' }">
+  <p-table [tableStyle]="{ 'min-width': '60rem' }" [value]="signalements">
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="code_cip" style="width: 50%">
-          Code CIP <p-sortIcon field="code_cip"></p-sortIcon>
+          Code CIP
+          <p-sortIcon field="code_cip"></p-sortIcon>
         </th>
         <th pSortableColumn="date_created" style="width: 50%">
-          Date <p-sortIcon field="date_created"></p-sortIcon>
+          Date
+          <p-sortIcon field="date_created"></p-sortIcon>
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-signalement>
+    <ng-template let-signalement pTemplate="body">
       <tr>
         <td>{{ signalement.code_cip }}</td>
         <td>{{ signalement.date_created | date: "dd/MM/yyyy" }}</td>
