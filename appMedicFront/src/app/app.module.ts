@@ -24,10 +24,8 @@ import { AnalyticsByYearComponent } from './components/analytics/analytics-by-ye
 import { environment } from '../environments/environment';
 
 import { AuthModule } from '@auth0/auth0-angular';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
-
-
+import { HeaderComponent } from './components/layout/header/header.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 
 
@@ -45,8 +43,10 @@ import { SignupComponent } from './components/signup/signup.component';
     AnalyticsByWeekComponent,
     AnalyticsByMonthComponent,
     AnalyticsByYearComponent,
-    LoginComponent,
-    SignupComponent,
+
+
+    HeaderComponent, 
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,9 +60,19 @@ import { SignupComponent } from './components/signup/signup.component';
     ReactiveFormsModule,
     TableModule,
     BrowserAnimationsModule,
-    AuthModule.forRoot(environment.auth),
+    BrowserModule,
+    AppRoutingModule,
+    AuthModule.forRoot({
+      domain: environment.auth.domain,
+      clientId: environment.auth.clientId,
+      authorizationParams: {
+        redirect_uri: environment.auth.redirectUri,
+        audience: environment.auth.audience, // Audience ici
+        scope: 'openid profile email' // Scopes nécessaires
+      }
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

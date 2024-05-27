@@ -1,10 +1,18 @@
-from flask import Flask
-
-from config import Config
+from flask import Flask, jsonify
+from flask_cors import CORS
 from db.mongodb import get_mongo_client
 from route.SignalementRoutes import SignalementRoutes
-from flask_cors import CORS
 from analytics.analytics_routes import AnalyticsRoutes
+from config import Config  # Assurez-vous que cette ligne est présente
+from validator import Auth0JWTBearerTokenValidator
+from authlib.integrations.flask_oauth2 import ResourceProtector
+
+require_auth = ResourceProtector()
+validator = Auth0JWTBearerTokenValidator(
+    "appmedic-for-you.eu.auth0.com",
+    "https://appMedic-api.fr"
+)
+require_auth.register_token_validator(validator)
 
 app = Flask(__name__)
 initialized = False
@@ -17,23 +25,3 @@ CORS(
         Config.CORS_ORIGIN_PROD,
     ],
 )
-
-
-# @app.before_request
-def initialize_database():
-    global initialized
-    if not initialized:
-        client = get_mongo_client()
-        try:
-            client.admin.command("ping")
-            print("MongoDB connection established successfully")
-            initialized = True
-        except Exception as e:
-            print(f"MongoDB connection failed: {e}")
-
-
-AnalyticsRoutes.init_app(app)
-SignalementRoutes.init_app(app)
-if __name__ == "__main__":
-    initialize_database()
-    app.run(debug=True, port=Config.APP_PORT)

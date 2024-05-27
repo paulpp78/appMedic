@@ -11,6 +11,7 @@ class SignalementRoutes:
         service = SignalementService(SignalementRepository(get_mongo_client()))
 
         @app.route("/signalement/<signalement_id>", methods=["PUT"])
+        
         def update_signalement(signalement_id):
             data = request.json
             pseudo, code_cip = data.get("pseudo"), data.get("code_cip")
