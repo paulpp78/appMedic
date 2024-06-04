@@ -17,3 +17,4 @@ class Config:
     ALGORITHMS = ["RS256"]
     AUTH0_DOMAIN = os.getenv("AUTH0_DOMAIN")
     API_IDENTIFIER = os.getenv("API_IDENTIFIER")
+    CORS = os.getenv("CORS")

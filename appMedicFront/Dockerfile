@@ -1,4 +1,4 @@
-FROM golang:1.22.2
+FROM golang:1.22.3
 
 WORKDIR /app
 
@@ -8,6 +8,6 @@ COPY . .
 
 RUN go build -o server .
 
-EXPOSE 8080
+EXPOSE 443
 
 CMD ["./server"]

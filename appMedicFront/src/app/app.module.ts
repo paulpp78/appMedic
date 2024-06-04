@@ -25,6 +25,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 import { AuthButtonComponent } from './components/auth/auth-button/auth-button.component';
 import { UserProfileComponent } from './components/auth/user-profile/user-profile.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { UserProfileComponent } from './components/auth/user-profile/user-profil
     AnalyticsByYearComponent,
     AuthButtonComponent,
     UserProfileComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

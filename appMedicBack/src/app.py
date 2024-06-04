@@ -11,15 +11,8 @@ app = Flask(__name__)
 
 initialized = False
 
-CORS(
-    app,
-    origins=[
-        Config.CORS_ORIGIN,
-        Config.CORS_ORIGIN_FRONT,
-        Config.CORS_ORIGIN_PROD,
-    ],
-    allow_headers=["Content-Type", "Authorization"],
-)
+CORS(app, origins=[Config.CORS_ORIGIN, Config.CORS_ORIGIN_FRONT, Config.CORS_ORIGIN_PROD, Config.CORS, ],
+    allow_headers=["Content-Type", "Authorization"], )
 
 
 @app.errorhandler(AuthError)

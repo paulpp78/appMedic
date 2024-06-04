@@ -1,24 +1,26 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
 
-const PORT string = ":8080"
-const DIR = "./dist/app-medic-front/browser/index.html"
+const PORT string = ":443"
+const DIR = "./app-medic/browser"
 
-func main() {
-	fmt.Printf("Server launched\n\n")
-	fmt.Printf("Veuillez vous rendre sur l'adresse : \"http://localhost:8080\"\n")
+func StartServer() error {
+	fileServer := http.FileServer(http.Dir(DIR))
+	http.Handle("/", http.StripPrefix("/", fileServer))
 
-	// fs := http.FileServer(http.Dir(DIR))
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, DIR)
-	})
+	log.Printf("Server started on port %s", PORT)
 
 	err := http.ListenAndServe(PORT, nil)
+	return err
+
+}
+func main() {
+
+	err := StartServer()
 
 	/**
 	  Handle server errors so that the application doesn't crash,

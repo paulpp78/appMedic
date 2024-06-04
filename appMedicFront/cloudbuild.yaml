@@ -1,0 +1,20 @@
+steps:
+  - name: 'node'
+    entrypoint: 'npm'
+    args: [ 'install' ]
+
+  - name: 'node'
+    entrypoint: 'npm'
+    args: [ 'run', 'build' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t' ,'app-medic-front' ,'.' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'tag', 'app-medic-front', 'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-front/app-medic-front:latest' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-front/app-medic-front:latest' ]
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [ 'run', 'deploy', 'app-medic-front', '--image', 'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-front/app-medic-front:latest', '--platform', 'managed', '--region', 'us-central1' ]
+

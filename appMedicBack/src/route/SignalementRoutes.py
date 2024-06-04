@@ -80,7 +80,7 @@ class SignalementRoutes:
                 return jsonify({"error": "ID de signalement invalide"}), 400
 
         @app.route("/signalement", methods=["GET"])
-        @require_auth()
+        # @require_auth()
         def get_signalements():
             signalements = service.get_signalements()
             signalements_list = list(signalements)

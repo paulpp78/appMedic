@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "serverGo/dist/app-medic-front",
+            "outputPath": "serverGo/app-medic",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
