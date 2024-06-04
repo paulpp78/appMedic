@@ -1,5 +1,10 @@
 <div class="card">
-  <p-table [tableStyle]="{ 'min-width': '60rem' }" [value]="signalements">
+  <p-table
+    [tableStyle]="{ 'min-width': '60rem' }"
+    [value]="signalements"
+    [sortField]="'date_created'"
+    [sortOrder]="-1"
+  >
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="code_cip" style="width: 50%">

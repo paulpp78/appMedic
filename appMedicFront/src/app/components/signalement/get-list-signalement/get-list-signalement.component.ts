@@ -5,7 +5,7 @@ import { SignalementService } from '../../../services/Signalement/signalement.se
 @Component({
   selector: 'app-get-list-signalement',
   templateUrl: './get-list-signalement.component.html',
-  styleUrl: './get-list-signalement.component.css',
+  styleUrls: ['./get-list-signalement.component.css'],
 })
 export class GetListSignalementComponent implements OnInit {
   signalements!: Signalement[];
@@ -15,7 +15,12 @@ export class GetListSignalementComponent implements OnInit {
   ngOnInit() {
     this.signalementService.getSignalements().subscribe(
       (data: Signalement[]) => {
-        this.signalements = data;
+        this.signalements = data.map((signalement) => ({
+          ...signalement,
+          date_created: signalement.date_created
+            ? new Date(signalement.date_created)
+            : undefined,
+        }));
       },
       (error) => {
         console.error('Error fetching signalements:', error);
