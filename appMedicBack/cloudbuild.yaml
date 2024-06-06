@@ -6,6 +6,7 @@ steps:
       - |
         gcloud secrets versions access latest --secret=env-back > src/.env
         ls -la src/.env
+        cat src/.env
     dir: appMedicBack
 
   - name: 'gcr.io/cloud-builders/docker'
@@ -22,16 +23,16 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-back/app-medic-back:latest']
 
-  # - name: 'gcr.io/cloud-builders/gcloud'
-  #   args:
-  #     [
-  #       'run',
-  #       'deploy',
-  #       'app-medic-back',
-  #       '--image',
-  #       'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-back/app-medic-back',
-  #       '--platform',
-  #       'managed',
-  #       '--region',
-  #       'us-central1',
-  #     ]
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      [
+        'run',
+        'deploy',
+        'app-medic-back',
+        '--image',
+        'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-back/app-medic-back',
+        '--platform',
+        'managed',
+        '--region',
+        'us-central1',
+      ]
