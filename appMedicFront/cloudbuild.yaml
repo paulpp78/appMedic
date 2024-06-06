@@ -13,7 +13,7 @@ steps:
         gcloud secrets version access --secret=env-front > env.json
         ls -la
         cat env.json
-        jq . env.json
+        nl env.json
     dir: appMedicFront
 
   - name: 'node'
