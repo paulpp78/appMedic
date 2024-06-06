@@ -10,7 +10,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud secrets version access --secret=env-front > env.json
+        gcloud secrets versions access latest --secret=env-front > src/environments/env.json
         ls -la
         cat env.json
         nl env.json
