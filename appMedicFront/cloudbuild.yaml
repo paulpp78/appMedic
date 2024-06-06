@@ -2,18 +2,32 @@ steps:
   - name: 'node'
     entrypoint: 'npm'
     args: [ 'install' ]
+    dir: appMedicFront
+
+    # Récupérer le env.json présent dans les secrets manager
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        gcloud secrets version access --secret=env-front > env.json
+        ls -la
+        cat env.json
+    dir: appMedicFront
 
   - name: 'node'
     entrypoint: 'npm'
     args: [ 'run', 'build' ]
+    dir: appMedicFront
 
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'build', '-t' ,'app-medic-front' ,'.' ]
+    dir: appMedicFront
 
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'tag', 'app-medic-front', 'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-front/app-medic-front:latest' ]
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'push', 'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-front/app-medic-front:latest' ]
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'run', 'deploy', 'app-medic-front', '--image', 'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-front/app-medic-front:latest', '--platform', 'managed', '--region', 'us-central1' ]
+  # - name: 'gcr.io/cloud-builders/gcloud'
+  #   args: [ 'run', 'deploy', 'app-medic-front' , '--image', 'us-central1-docker.pkg.dev/core-crowbar-424511-p7/app-medic-front/app-medic-front', '--platform', 'managed', '--region', 'us-central1' ]
