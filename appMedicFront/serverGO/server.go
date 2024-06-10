@@ -6,16 +6,16 @@ import (
 )
 
 const PORT string = ":443"
-const DIR = "./app-medic/browser"
+const DIR = "./app-medic/browser/index.html"
 
 func StartServer() error {
-	fileServer := http.FileServer(http.Dir(DIR))
-	http.Handle("/", http.StripPrefix("/", fileServer))
-
-	log.Printf("Server started on port %s", PORT)
+	fmt.Println("Starting server on port", PORT)
+	fmt.Println("URL to access the server", "https://localhost" + PORT)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, DIR)
+	})
 
 	err := http.ListenAndServe(PORT, nil)
-	return err
 
 }
 func main() {
