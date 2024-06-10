@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net/http"
-
 	"github.com/gorilla/mux"
 )
 
@@ -13,17 +12,14 @@ const DIR = "./app-medic/browser"
 func StartServer() error {
 	router := mux.NewRouter()
 
-	// Serve static files from the Angular build directory
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(DIR))))
 
-	// Redirect all other routes to index.html for client-side routing
 	router.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, DIR+"/index.html")
 	})
 
 	log.Printf("Server started on port %s", PORT)
 
-	// Use ListenAndServeTLS if you have TLS certificates
 	err := http.ListenAndServe(PORT, router)
 	return err
 }
