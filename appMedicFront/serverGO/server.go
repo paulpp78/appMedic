@@ -1,22 +1,29 @@
 package main
 
 import (
-	"log"
-	"net/http"
+    "log"
+    "net/http"
+    "path/filepath"
+    "strings"
 )
 
 const PORT string = ":443"
 const DIR = "./app-medic/browser"
 
 func StartServer() error {
-	fileServer := http.FileServer(http.Dir(DIR))
-	http.Handle("/", http.StripPrefix("/", fileServer))
+    fileServer := http.FileServer(http.Dir(DIR))
 
-	log.Printf("Server started on port %s", PORT)
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        if strings.HasSuffix(r.URL.Path, ".js") {
+            w.Header().Set("Content-Type", "application/javascript")
+        }
+        fileServer.ServeHTTP(w, r)
+    })
 
-	err := http.ListenAndServe(PORT, nil)
-	return err
+    log.Printf("Server started on port %s", PORT)
 
+    err := http.ListenAndServe(PORT, nil)
+    return err
 }
 func main() {
 
