@@ -1,36 +1,39 @@
 package main
 
 import (
-    "log"
-    "net/http"
-    "strings"
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 const PORT string = ":443"
 const DIR = "./app-medic/browser"
 
 func StartServer() error {
-    fileServer := http.FileServer(http.Dir(DIR))
+	router := mux.NewRouter()
 
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        if strings.HasSuffix(r.URL.Path, ".js") {
-            w.Header().Set("Content-Type", "application/javascript")
-        }
-        fileServer.ServeHTTP(w, r)
-    })
+	// Serve static files from the Angular build directory
+	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(DIR))))
 
-    log.Printf("Server started on port %s", PORT)
+	// Redirect all other routes to index.html for client-side routing
+	router.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, DIR+"/index.html")
+	})
 
-    err := http.ListenAndServe(PORT, nil)
-    return err
+	log.Printf("Server started on port %s", PORT)
+
+	// Use ListenAndServeTLS if you have TLS certificates
+	err := http.ListenAndServe(PORT, router)
+	return err
 }
-func main() {
 
+func main() {
 	err := StartServer()
 
 	/**
 	  Handle server errors so that the application doesn't crash,
-	    and continues to run no matter what.
+	  and continues to run no matter what.
 	*/
 	if err != nil {
 		switch err {
