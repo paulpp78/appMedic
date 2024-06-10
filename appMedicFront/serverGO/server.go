@@ -17,7 +17,7 @@ func StartServer() error {
 	})
 
 	err := http.ListenAndServe(PORT, nil)
-
+	return err
 }
 func main() {
 
