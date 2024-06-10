@@ -1,26 +1,26 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
-	"github.com/gorilla/mux"
 )
 
 const PORT string = ":443"
 const DIR = "./app-medic/browser"
 
 func StartServer() error {
-	router := mux.NewRouter()
+	router := gin.Default()
 
-	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(DIR))))
+	router.Static("/static", DIR)
 
-	router.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, DIR+"/index.html")
+	router.NoRoute(func(c *gin.Context) {
+		c.File(DIR + "/index.html")
 	})
 
 	log.Printf("Server started on port %s", PORT)
 
-	err := http.ListenAndServe(PORT, router)
+	err := router.Run(PORT)
 	return err
 }
 
