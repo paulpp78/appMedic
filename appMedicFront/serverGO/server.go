@@ -4,6 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+	"path/filepath"
+	"strings"
 )
 
 const PORT string = ":443"
@@ -12,10 +14,15 @@ const DIR = "./app-medic/browser"
 func StartServer() error {
 	router := gin.Default()
 
+	router.StaticFile("/", filepath.Join(DIR, "index.html"))
 	router.Static("/static", DIR)
 
 	router.NoRoute(func(c *gin.Context) {
-		c.File(DIR + "/index.html")
+		filePath := filepath.Join(DIR, c.Request.URL.Path)
+		if strings.HasSuffix(filePath, ".js") {
+			c.Header("Content-Type", "application/javascript")
+		}
+		c.File(filePath)
 	})
 
 	log.Printf("Server started on port %s", PORT)
