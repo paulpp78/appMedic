@@ -1,6 +1,10 @@
 # appMedic
 
-Bienvenue sur le projet appMedic, une application conçue pour faciliter le renouvellement de médicaments essentiels.
+Bienvenue sur le projet appMedic, une application conçue pour signaler les médicaments essentiels en cas de difficulté d'approvisionnement.
+
+## Lien vers le projet
+
+<https://appmedic.eu>
 
 ## Prérequis
 
@@ -9,6 +13,11 @@ Avant de commencer, assurez-vous que vous avez installé les éléments suivants
 - Git
 - Node.js et npm
 - Python
+- Go
+
+Ou
+
+- Docker
 
 ## Configuration initiale
 
@@ -17,11 +26,12 @@ Avant de commencer, assurez-vous que vous avez installé les éléments suivants
 
 ## Installation des dépendances
 
-Nous avons un script de configuration pour Windows qui installe toutes les dépendances nécessaires pour le backend et le frontend. Exécutez le script `setup.ps1` en ouvrant PowerShell comme administrateur.
+Il existe des scripts de configuration pour différents systèmes d'exploitation :
 
-```powershell
-.\setup.ps1
-```
+- Pour Windows : `setup.ps1`
+- Pour Linux et macOS : `setup.sh`
+
+Un `Makefile` est également disponible pour les deux systèmes.
 
 ## Démarrage de l'application
 
